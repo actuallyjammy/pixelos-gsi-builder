@@ -38,6 +38,8 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y curl aria2 openssl patch ca-certificates libarchive-tools default-jre-headless xz-utils
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-33' 'build-tools;33.0.2'
+      - name: Download and verify the donor ROM
+        run: python3 scripts/download-donor.py
       - name: Fetch pinned tools
         run: python3 scripts/fetch-tools.py
       - name: Build PHH Treble Settings
@@ -46,8 +48,6 @@ jobs:
           # JCenter is retired; these dependencies are available on Maven Central.
           sed -i 's/jcenter()/mavenCentral()/g' build.gradle
           bash build.sh release
-      - name: Download and verify the donor ROM
-        run: python3 scripts/download-donor.py
       - name: Port PixelOS and package the GSI
         shell: bash
         run: |

@@ -12,6 +12,10 @@
     "url": "https://download.pixelos.net/seventeen/alioth/PixelOS_alioth-17.0-20260922-1500.zip",
     "sha256": "6fd8fa1753171eb5ab1d46cbcd9cf4df2c29b282a17b077f3315b8bfddcd64b0",
     "size": 2628867768,
-    "metadata_url": "https://github.com/PixelOS-AOSP/official_devices/blob/seventeen/API/updater/alioth.json"
+    "metadata_url": "https://github.com/PixelOS-AOSP/official_devices/blob/seventeen/API/updater/alioth.json",
+    "mirrors": [
+      "https://downloads.sourceforge.net/project/pixelos-releases/seventeen/alioth/PixelOS_alioth-17.0-20260922-1500.zip",
+      "https://phoenixnap.dl.sourceforge.net/project/pixelos-releases/seventeen/alioth/PixelOS_alioth-17.0-20260922-1500.zip"
+    ]
   }
 }
