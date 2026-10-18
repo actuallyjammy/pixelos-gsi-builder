@@ -2,7 +2,7 @@
 
 Port a pinned official PixelOS 17 ARM64 device ROM into an experimental merged ext4 GSI using MysticGSI on GitHub Actions.
 
-This is a firmware port, not a PixelOS source build. A completed build does not establish that Android boots in QEMU. The image uses MysticGSI's permissive SELinux modifications and public AVB test key; it is intended for the GBL/QEMU experiment.
+This is a firmware port, not a PixelOS source build. A completed build does not establish that Android boots in QEMU. The image includes MysticGSI's SELinux modifications and public AVB test key; it is intended for the GBL/QEMU experiment.
 
 ## Run a build
 
@@ -31,6 +31,6 @@ xz -dk PixelOS-17-arm64-ab-mystic.img.xz
 
 ## Troubleshoot a failed build
 
-The artifact upload runs after failures. Check the failed Actions step first, then `build.log` and `manifest.json` if present. Donor size or hash mismatches stop before extraction. The runner must have at least 25 GiB free after removing unused preinstalled toolchains. A donor whose init differs from Mystic's supported instruction pattern stops rather than silently claiming a permissive image.
+The artifact upload runs after failures. Check the failed Actions step first, then `build.log` and `manifest.json` if present. Donor size or hash mismatches stop before extraction. The runner must have at least 25 GiB free after removing unused preinstalled toolchains. A donor whose init differs from Mystic's supported instruction pattern is reported with a warning; it is not claimed to be permissive. The post-patch init binary is retained in the artifact for inspection.
 
 Update source pins and donor hashes explicitly before trying a different input. The workflow needs no custom secrets and grants only read access to repository contents.
