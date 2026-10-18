@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 
 ROOT = Path(__file__).resolve().parents[1]
 MYSTIC = ROOT / 'toolchains/mysticgsi'
@@ -113,8 +114,18 @@ try:
     report['image_bytes'] = image.stat().st_size
     destination = ARTIFACTS / 'PixelOS-17-arm64-ab-mystic.img.xz'
     print(f'Compressing {image} to {destination}', flush=True)
+    total = image.stat().st_size
+    processed = 0
+    started = last_report = time.monotonic()
     with image.open('rb') as src, lzma.open(destination, 'wb', preset=3) as dst:
-        shutil.copyfileobj(src, dst, 4 * 1024 * 1024)
+        while block := src.read(4 * 1024 * 1024):
+            dst.write(block)
+            processed += len(block)
+            now = time.monotonic()
+            if now - last_report >= 15 or processed == total:
+                speed = processed / max(now - started, 0.001) / 1024**2
+                print(f'Compressing: {processed / total:.1%} ({processed / 1024**3:.2f}/{total / 1024**3:.2f} GiB), {speed:.1f} MiB/s', flush=True)
+                last_report = now
     with destination.open('rb') as stream:
         digest = hashlib.file_digest(stream, 'sha256').hexdigest()
     (ARTIFACTS / 'SHA256SUMS').write_text(f'{digest}  {destination.name}\n')
