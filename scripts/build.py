@@ -22,7 +22,6 @@ os.chdir(MYSTIC)
 import make
 from cli import ConsoleLogger
 from tools.host import configure_environment
-from tools.porting.binary import patch_init
 
 configure_environment()
 report = {'sources': sources, 'runtime_verified': False}
@@ -107,7 +106,8 @@ try:
     if porter.build(str(donor)):
         raise RuntimeError('MysticGSI build failed; see build.log')
     image = Path(porter.output_images['system'])
-    report['image_sha256'] = hashlib.file_digest(image.open('rb'), 'sha256').hexdigest()
+    with image.open('rb') as stream:
+        report['image_sha256'] = hashlib.file_digest(stream, 'sha256').hexdigest()
     report['image_bytes'] = image.stat().st_size
     destination = ARTIFACTS / 'PixelOS-17-arm64-ab-mystic.img.xz'
     print(f'Compressing {image} to {destination}', flush=True)

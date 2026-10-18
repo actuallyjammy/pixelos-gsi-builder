@@ -8,7 +8,7 @@ This is a firmware port, not a PixelOS source build. A completed build does not 
 
 Open **Actions → Build PixelOS GSI → Run workflow**. The workflow runs only on manual dispatch, uses a standard Ubuntu runner, and uploads a seven-day artifact containing the compressed image, checksums, manifest and build log. It does not publish a release or modify a local VM.
 
-The donor is `PixelOS_alioth-17.0-20260922-1500.zip` from the [official PixelOS download service](https://pixelos.net/download/alioth). Its expected SHA256 comes from the [official updater metadata](https://github.com/PixelOS-AOSP/official_devices/blob/master/API/updater/alioth.json). URLs, checksums and tool commit IDs are recorded in [sources.json](sources.json). Python package versions actually used are captured in the artifact.
+The donor is `PixelOS_alioth-17.0-20260922-1500.zip` from the [official PixelOS download service](https://pixelos.net/download/alioth). Its expected SHA256 comes from the [official updater metadata](https://github.com/PixelOS-AOSP/official_devices/blob/seventeen/API/updater/alioth.json). URLs, checksums and tool commit IDs are recorded in [sources.json](sources.json). Python package versions actually used are captured in the artifact.
 
 The output merges system, product and system_ext. The donor's vendor and device boot images are not part of the resulting GSI. Keep the Cuttlefish vendor, boot and kernel setup for the QEMU experiment.
 
