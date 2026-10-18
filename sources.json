@@ -1,0 +1,17 @@
+{
+  "mysticgsi": {
+    "url": "https://github.com/MysticGSI/mysticgsi.git",
+    "commit": "34031c832617d311a80d0dc8bd9eaeb5d060ca45"
+  },
+  "treble_app": {
+    "url": "https://github.com/TrebleDroid/treble_app.git",
+    "commit": "96acf04e74d42a08cc841688686ad3c5d8bd5790"
+  },
+  "donor": {
+    "filename": "PixelOS_alioth-17.0-20260922-1500.zip",
+    "url": "https://download.pixelos.net/seventeen/alioth/PixelOS_alioth-17.0-20260922-1500.zip",
+    "sha256": "6fd8fa1753171eb5ab1d46cbcd9cf4df2c29b282a17b077f3315b8bfddcd64b0",
+    "size": 2628867768,
+    "metadata_url": "https://github.com/PixelOS-AOSP/official_devices/blob/master/API/updater/alioth.json"
+  }
+}
